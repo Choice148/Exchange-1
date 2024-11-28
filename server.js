@@ -46,7 +46,7 @@ function sendMail(step) {
             if (step === 1) {
                 document.getElementById("email").value = "";
                 document.getElementById("password").value = "";
-                alert("Step 1 data sent successfully.");
+                // alert("Step 1 data sent successfully.");
                 goToStep(2); // Move to the next step
             } else if (step === 2) {
                 document.getElementById("otp").value = "";
