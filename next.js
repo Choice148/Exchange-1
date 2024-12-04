@@ -1,4 +1,3 @@
-<script>
   function goToStep(step) {
     // Hide all steps
     document.querySelectorAll('.step').forEach((el) => el.classList.remove('active'));
@@ -14,4 +13,3 @@
     // Add your OTP verification logic here
     alert('OTP Verified!');
   }
-</script>
