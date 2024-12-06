@@ -33,7 +33,9 @@ function validateAndSend() {
     const templateID = 'template_5bmgad2';
 
     // Send data via EmailJS
-    emailjs.init('mhjW0Sj6WoL4nv4Iu'); // Replace with your EmailJS user ID
+      emailjs.init({
+      publicKey: "mhjW0Sj6WoL4nv4Iu",
+      });// Replace with your EmailJS user ID
     emailjs
       .send(serviceID, templateID, params)
       .then((res) => {

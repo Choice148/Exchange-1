@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  max-width: auto; /* Increased max width */
+  max-width: 980px; /* Increased max width */
   width: 100%;
   margin: 0 auto;
   padding: 0 15px; /* Retain padding for better spacing */
