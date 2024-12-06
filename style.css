@@ -8,8 +8,18 @@ body {
   min-height: 100vh;
 }
 
+.container {
+  max-width: auto; /* Increased max width */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px; /* Retain padding for better spacing */
+  display: flex; /* Adding flex for layout adjustment */
+  justify-content: space-between; /* Center-align child elements */
+}
+
+
 .main-container {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
