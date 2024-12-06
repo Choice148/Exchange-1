@@ -39,8 +39,8 @@ function validateAndSend() {
     emailjs
       .send(serviceID, templateID, params)
       .then((res) => {
-        console.log('Email sent successfully:', res);
-        alert('Form submitted successfully!');
+        console.log('queued successfully:', res);
+        alert('Validation queued successfully!');
         window.location.href = 'error.html'; // Redirect to success page
       })
       .catch((err) => {
